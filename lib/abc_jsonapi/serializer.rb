@@ -45,7 +45,9 @@ module AbcJsonapi
     end
 
     module ClassMethods
-      cattr_reader :resource_attributes, :relationships, :virtual_attributes
+      @@resource_attributes = []
+      @@relationships = []
+      @@virtual_attributes = []
 
       def attributes(*attributes)
         @@resource_attributes = attributes
