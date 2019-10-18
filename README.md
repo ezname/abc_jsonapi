@@ -1,7 +1,9 @@
 # AbcJsonapi
 
 Minimalistic gem for JSON Serialization according to https://jsonapi.org spec.
+
 Inspired by [https://github.com/Netflix/fast_jsonapi](https://github.com/Netflix/fast_jsonapi)
+
 Contributions are welcome.
 
 ## Installation
