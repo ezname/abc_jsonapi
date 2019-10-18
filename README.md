@@ -41,7 +41,7 @@ The serializer is able to work with any ruby ​​objects. Not only ActiveRecor
 
 ```ruby
 class Author
-	attr_reader :first_name, :last_name, :public_name, :contact_id
+  attr_reader :first_name, :last_name, :public_name, :contact_id
 end
 ```
 
@@ -49,11 +49,11 @@ end
 
 ```ruby
 class AuthorSerializer
-	include AbcJsonapi::Serializer
-	resource_type :people (optional)
-	attributes :first_name, :last_name, :public_name
-	belongs_to :contact
-	has_many :books
+  include AbcJsonapi::Serializer
+  resource_type :people (optional)
+  attributes :first_name, :last_name, :public_name
+  belongs_to :contact
+  has_many :books
 end
 ```
 
@@ -75,7 +75,7 @@ Also there is `attribute` method to declare single property. You can pass a bloc
 
 ```ruby
 attribute :date_of_birth  do |object|
-	object.date_of_birth.strftime("%FT%T.%3N%:z") if object.stop.present?
+  object.date_of_birth.strftime("%FT%T.%3N%:z") if object.stop.present?
 end
 ```
 
@@ -115,9 +115,9 @@ AuthorSerializer.new(resource, options).serialized_json
 
 ```ruby
 AbcJsonapi.configure do |config|
-	config.transform_keys = true
-	config.key_transform_method = "camel"
-	config.pluralize_resources  =  true
+  config.transform_keys = true
+  config.key_transform_method = "camel"
+  config.pluralize_resources  =  true
 end
 ```
 
