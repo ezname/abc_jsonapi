@@ -27,8 +27,8 @@ module AbcJsonapi
       @resource_attributes = self.class.resource_attributes
       @relationships = self.class.relationships
       @virtual_attributes = self.class.virtual_attributes
-      @includes = options[:include]
-      @meta = options[:meta]
+      @includes = options[:include] if options[:include].present?
+      @meta = options[:meta] if options[:meta].present?
     end
 
     def serializable_hash
