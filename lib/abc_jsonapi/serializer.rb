@@ -45,30 +45,30 @@ module AbcJsonapi
     end
 
     module ClassMethods
-      attr_reader :resource_attributes, :relationships, :virtual_attributes
+      cattr_reader :resource_attributes, :relationships, :virtual_attributes
 
       def attributes(*attributes)
-        @resource_attributes = attributes
+        @@resource_attributes = attributes
       end
 
       def has_one(relationship, &block)
-        @relationships << { type: :has_one, name: relationship, block: block }
+        @@relationships << { type: :has_one, name: relationship, block: block }
       end
 
       def has_many(relationship, &block)
-        @relationships << { type: :has_many, name: relationship, block: block }
+        @@relationships << { type: :has_many, name: relationship, block: block }
       end
 
       def belongs_to(relationship, &block)
-        @relationships << { type: :belongs_to, name: relationship, block: block }
+        @@relationships << { type: :belongs_to, name: relationship, block: block }
       end
 
       def resource_type(rtype = nil)
-        @resource_type ||= rtype || Helpers.pluralize_if_necessary(default_type)
+        @@resource_type ||= rtype || Helpers.pluralize_if_necessary(default_type)
       end
 
       def attribute(name, &block)
-        @virtual_attributes << { name: name, block: block }
+        @@virtual_attributes << { name: name, block: block }
       end
 
       private
