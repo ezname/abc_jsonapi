@@ -66,7 +66,7 @@ Default resource type of direct serializing model is taken from serializer filen
 Jsonapi attributes may be declared with class method of serializer - `attributes`:
 
 ```ruby
-attributes :first_attribute, :second, *other
+attributes :first_attribute, :second, *other attributes*
 ```
 
 `attributes` arguments will be called on serializing model as methods.
@@ -75,7 +75,7 @@ Also there is `attribute` method to declare single property. You can pass a bloc
 
 ```ruby
 attribute :date_of_birth  do |object|
-  object.date_of_birth.strftime("%FT%T.%3N%:z") if object.stop.present?
+  object.date_of_birth.strftime("%FT%T.%3N%:z") if object.date_of_birth.present?
 end
 ```
 
