@@ -14,14 +14,6 @@ module AbcJsonapi
     attr_reader :resource, :result_hash, :resource_type, :resource_attributes,
                 :relationships, :virtual_attributes, :includes, :meta
 
-    cattr_reader :resource_attributes, :relationships, :virtual_attributes
-
-    included do
-      @@resource_attributes = []
-      @@relationships = []
-      @@virtual_attributes = []
-    end
-
     def initialize(resource, options = {})
       @resource = resource
       @result_hash = { data: nil }
@@ -45,6 +37,10 @@ module AbcJsonapi
     end
 
     module ClassMethods
+      class << self
+        attr_reader :resource_attributes, :relationships, :virtual_attributes
+      end
+
       @@resource_attributes = []
       @@relationships = []
       @@virtual_attributes = []
