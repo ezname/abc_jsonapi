@@ -2,6 +2,8 @@
 
 require "bundler/setup"
 require "abc_jsonapi"
+require "/Users/e.zhmakin/projects/MyGems/abc_jsonapi/lib/dev/question_map_serializer.rb"
+require "/Users/e.zhmakin/projects/MyGems/abc_jsonapi/lib/dev/db.rb"
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
