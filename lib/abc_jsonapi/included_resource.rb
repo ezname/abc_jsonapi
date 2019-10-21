@@ -55,6 +55,7 @@ module AbcJsonapi
     end
 
     def included_items_from_collection(collection, include_name)
+      byebug
       # Run custom include strategy if block given. Otherwise run default method
       if (block = relationship.dig(:block)).present?
         block.call(resource)
