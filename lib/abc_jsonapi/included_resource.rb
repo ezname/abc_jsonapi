@@ -12,19 +12,12 @@ module AbcJsonapi
     def serializable_hash
       includes.each do |include_path|
         include_chain = include_path.split('.')
-        if resource.is_a?(Enumerable)
-          resource.each do |single_res|
-            get_included_records(single_res, include_chain.dup)
-          end
-        else
-          get_included_records(resource, include_chain)
-        end
+        get_included_records(single_res, include_chain.dup)
       end
       includes_result.flatten
     end
 
     def get_included_records(resource, include_chain)
-      byebug
       return if resource.nil? || include_chain.empty?
 
       # Get first include name of include_chain and delete it from include_chain
