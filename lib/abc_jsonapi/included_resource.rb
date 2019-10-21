@@ -12,13 +12,7 @@ module AbcJsonapi
     def serializable_hash
       includes.each do |include_path|
         include_chain = include_path.split('.')
-        if resource.is_a?(Enumerable)
-          resource.each do |single_res|
-            get_included_records(single_res, include_chain.dup)
-          end
-        else
-          get_included_records(resource, include_chain)
-        end
+        get_included_records(resource, include_chain.dup)
       end
       includes_result.flatten
     end
@@ -36,7 +30,7 @@ module AbcJsonapi
 
       # Get included resource
       if resource.is_a?(Enumerable)
-        resource = included_items_from_collection(resource, inc_resource_name)
+        resource = included_items_from_collection(resource, inc_resource_name, relationship.dig(:block))
       else
         resource = resource.public_send(inc_resource_name)
       end
@@ -54,12 +48,12 @@ module AbcJsonapi
       end
     end
 
-    def included_items_from_collection(collection, include_name)
+    def included_items_from_collection(collection, include_name, block = nil)
       # Run custom include strategy if block given. Otherwise run default method
-      if (block = relationship.dig(:block)).present?
-        block.call(resource)
+      if block.present?
+        block.call(collection)
       else
-        collection.map(&:include_name).flatten.uniq
+        collection.map{ |res| res.public_send(include_name) }.flatten.uniq
       end
     end
 
