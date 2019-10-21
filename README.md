@@ -1,7 +1,9 @@
 # AbcJsonapi
 
-Minimalistic gem for JSON Serialization according to https://jsonapi.org spec
+Minimalistic gem for JSON Serialization according to https://jsonapi.org spec.
+
 Inspired by [https://github.com/Netflix/fast_jsonapi](https://github.com/Netflix/fast_jsonapi)
+
 Contributions are welcome.
 
 ## Installation
@@ -39,7 +41,7 @@ The serializer is able to work with any ruby ​​objects. Not only ActiveRecor
 
 ```ruby
 class Author
-	attr_reader :first_name, :last_name, :public_name, :contact_id
+  attr_reader :first_name, :last_name, :public_name, :contact_id
 end
 ```
 
@@ -47,11 +49,11 @@ end
 
 ```ruby
 class AuthorSerializer
-	include AbcJsonapi::Serializer
-	resource_type :people (optional)
-	attributes :first_name, :last_name, :public_name
-	belongs_to :contact
-	has_many :books
+  include AbcJsonapi::Serializer
+  resource_type :people (optional)
+  attributes :first_name, :last_name, :public_name
+  belongs_to :contact
+  has_many :books
 end
 ```
 
@@ -64,7 +66,7 @@ Default resource type of direct serializing model is taken from serializer filen
 Jsonapi attributes may be declared with class method of serializer - `attributes`:
 
 ```ruby
-attributes :first_attribute, :second, *other
+attributes :first_attribute, :second, *other attributes*
 ```
 
 `attributes` arguments will be called on serializing model as methods.
@@ -73,7 +75,7 @@ Also there is `attribute` method to declare single property. You can pass a bloc
 
 ```ruby
 attribute :date_of_birth  do |object|
-	object.date_of_birth.strftime("%FT%T.%3N%:z") if object.stop.present?
+  object.date_of_birth.strftime("%FT%T.%3N%:z") if object.date_of_birth.present?
 end
 ```
 
@@ -113,9 +115,9 @@ AuthorSerializer.new(resource, options).serialized_json
 
 ```ruby
 AbcJsonapi.configure do |config|
-	config.transform_keys = true
-	config.key_transform_method = "camel"
-	config.pluralize_resources  =  true
+  config.transform_keys = true
+  config.key_transform_method = "camel"
+  config.pluralize_resources  =  true
 end
 ```
 
