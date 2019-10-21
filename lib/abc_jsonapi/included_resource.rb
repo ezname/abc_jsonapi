@@ -12,7 +12,7 @@ module AbcJsonapi
     def serializable_hash
       includes.each do |include_path|
         include_chain = include_path.split('.')
-        get_included_records(single_res, include_chain.dup)
+        get_included_records(resource, include_chain.dup)
       end
       includes_result.flatten
     end
