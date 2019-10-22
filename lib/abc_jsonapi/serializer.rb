@@ -2,7 +2,6 @@ require 'active_support/concern'
 require 'active_support/core_ext/string'
 require 'active_support/json'
 require 'i18n'
-require 'byebug'
 require 'abc_jsonapi/model'
 require 'abc_jsonapi/collection'
 require 'abc_jsonapi/included_resource'
@@ -13,7 +12,7 @@ module AbcJsonapi
 
     attr_reader :resource, :result_hash, :resource_type, :resource_attributes,
                 :relationships, :virtual_attributes, :includes, :meta
-                
+
     def initialize(resource, options = {})
       @resource = resource
       @result_hash = { data: nil }
