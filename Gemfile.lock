@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    abc_jsonapi (0.2.6)
+    abc_jsonapi (0.2.7)
       activesupport (>= 5.2)
       i18n
 
