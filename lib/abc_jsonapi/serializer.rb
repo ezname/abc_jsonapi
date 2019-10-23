@@ -25,7 +25,7 @@ module AbcJsonapi
     end
 
     def serializable_hash
-      return nil if resource.nil?
+      return nil if resource.blank?
 
       result_hash[:meta] = meta if meta.present?
       result_hash[:data] = data_hash
