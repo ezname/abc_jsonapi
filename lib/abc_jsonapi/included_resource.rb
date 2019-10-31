@@ -36,8 +36,6 @@ module AbcJsonapi
       end
 
       return if resource.nil?
-      
-      a = serializer(inc_resource_name).new(resource).serializable_hash[:data]
 
       @includes_result << serializer(inc_resource_name).new(resource).serializable_hash[:data]
       
