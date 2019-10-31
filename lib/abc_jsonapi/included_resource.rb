@@ -34,6 +34,8 @@ module AbcJsonapi
       else
         resource = resource.public_send(inc_resource_name)
       end
+
+      byebug
       return if resource.nil?
       
       @includes_result << serializer(inc_resource_name).new(resource).serializable_hash[:data]
