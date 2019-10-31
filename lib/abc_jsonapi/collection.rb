@@ -14,6 +14,7 @@ module AbcJsonapi
 
     def serializable_hash
       collection.map do |model|
+        next if model.nil?
         AbcJsonapi::Model.new(
           model: model,
           resource_type: resource_type,

@@ -2,7 +2,6 @@ require 'active_support/concern'
 require 'active_support/core_ext/string'
 require 'active_support/json'
 require 'i18n'
-require 'byebug'
 require 'abc_jsonapi/model'
 require 'abc_jsonapi/collection'
 require 'abc_jsonapi/included_resource'
@@ -26,7 +25,7 @@ module AbcJsonapi
     end
 
     def serializable_hash
-      return nil if resource.nil?
+      return nil if resource.blank?
 
       result_hash[:meta] = meta if meta.present?
       result_hash[:data] = data_hash
