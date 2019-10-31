@@ -38,10 +38,7 @@ module AbcJsonapi
       return if resource.nil?
       
       a = serializer(inc_resource_name).new(resource).serializable_hash[:data]
-      if a.nil?
-        byebug
-      end
-      
+
       @includes_result << serializer(inc_resource_name).new(resource).serializable_hash[:data]
       
       # If resource is a collection call get_included_records for each. Otherwise send whole resource
@@ -59,6 +56,7 @@ module AbcJsonapi
       if block.present?
         block.call(collection)
       else
+        byebug
         collection.map{ |res| res.public_send(include_name) }.flatten.uniq
       end
     end
