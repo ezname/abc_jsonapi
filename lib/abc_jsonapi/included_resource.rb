@@ -54,8 +54,7 @@ module AbcJsonapi
       if block.present?
         block.call(collection)
       else
-        byebug
-        collection.map{ |res| res.public_send(include_name) }.flatten.compact.uniq { |item| item.id }
+        collection.map{ |res| res.public_send(include_name) }.flatten.reject(&:nil?).uniq { |item| item.id }
       end
     end
 
