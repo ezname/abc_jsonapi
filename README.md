@@ -35,7 +35,7 @@ Or install it yourself as:
 
 Syntax is very similar to Active Model Serializer.
 
-The serializer is able to work with any ruby ​​objects. Not only ActiveRecord. The idea is to use duck typing for getting object attributes, relationships and all other data.
+The serializer is able to work with any ruby ​​objects. Not only ActiveRecord. It calls objects methods to get all the data.
 
 #### Model Example
 
