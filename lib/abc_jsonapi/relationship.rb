@@ -1,11 +1,12 @@
 module AbcJsonapi
   class Relationship
-    attr_reader :model, :relationship, :type
+    attr_reader :model, :relationship, :type, :block
 
-    def initialize(model:, relationship:, type:)
+    def initialize(model:, relationship:, type:, block:)
       @model = model
       @relationship = relationship
       @type = type
+      @block = block
     end
 
     def serializable_hash
@@ -31,7 +32,8 @@ module AbcJsonapi
     end
 
     def serialize_has_many
-      data = model.public_send(relationship).map do |relation|
+      rels = block.present? ? block.call(model) : model.public_send(relationship)
+      data = rels.map do |relation|
         {
           id: relation.id.to_s,
           type: Helpers.pluralize_if_necessary(relationship.to_s).to_sym

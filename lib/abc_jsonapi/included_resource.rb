@@ -30,7 +30,7 @@ module AbcJsonapi
 
       # Get included resource
       if resource.is_a?(Enumerable)
-        resource = included_items_from_collection(resource, inc_resource_name, relationship.dig(:block))
+        resource = collection.map{ |res| res.public_send(inc_resource_name) }.flatten.reject(&:nil?).uniq{ |item| item.id }
       else
         resource = resource.public_send(inc_resource_name)
       end
@@ -45,15 +45,6 @@ module AbcJsonapi
         end
       else
         get_included_records(resource, include_chain)
-      end
-    end
-
-    def included_items_from_collection(collection, include_name, block = nil)
-      # Run custom include strategy if block given. Otherwise run default method
-      if block.present?
-        block.call(collection)
-      else
-        collection.map{ |res| res.public_send(include_name) }.flatten.reject(&:nil?).uniq{ |item| item.id }
       end
     end
 

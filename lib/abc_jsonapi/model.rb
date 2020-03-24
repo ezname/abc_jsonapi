@@ -48,7 +48,8 @@ module AbcJsonapi
         rel_model = AbcJsonapi::Relationship.new(
           model: model,
           relationship: relationship[:name],
-          type: relationship[:type]
+          type: relationship[:type],
+          block: relationship[:block]
         )
         result[relationship[:name].to_sym] = rel_model.serializable_hash
       end
