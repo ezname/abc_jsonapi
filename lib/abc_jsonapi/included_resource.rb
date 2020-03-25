@@ -30,7 +30,7 @@ module AbcJsonapi
 
       # Get included resource
       if resource.is_a?(Enumerable)
-        resource = collection.map{ |res| res.public_send(inc_resource_name) }.flatten.reject(&:nil?).uniq{ |item| item.id }
+        resource = resource.map{ |res| res.public_send(inc_resource_name) }.flatten.reject(&:nil?).uniq{ |item| item.id }
       else
         resource = resource.public_send(inc_resource_name)
       end
