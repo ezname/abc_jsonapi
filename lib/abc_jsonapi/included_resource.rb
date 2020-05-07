@@ -18,7 +18,7 @@ module AbcJsonapi
     end
 
     def get_included_records(resource, include_chain)
-      return if resource.nil? || include_chain.empty?
+      return if resource.blank? || include_chain.empty?
 
       # Get first include name of include_chain and delete it from include_chain
       inc_resource_name = include_chain.shift
@@ -26,15 +26,15 @@ module AbcJsonapi
       # Check if include name is exist in relationships array. Take it or return nil
       resource_class_name = resource.is_a?(Enumerable) ? resource[0].class.name : resource.class.name
       relationship = serializer(resource_class_name).relationships.find { |h| h[:name] == inc_resource_name.to_sym }
-      return if relationship.nil?
+      return if relationship.blank?
 
       # Get included resource
       if resource.is_a?(Enumerable)
-        resource = resource.map{ |res| res.public_send(inc_resource_name) }.flatten.reject(&:nil?).uniq{ |item| item.id }
+        resource = resource.map{ |res| res.public_send(inc_resource_name) }.flatten.reject(&:blank?).uniq{ |item| item.id }
       else
         resource = resource.public_send(inc_resource_name)
       end
-      return if resource.nil?
+      return if resource.blank?
       
       @includes_result << serializer(inc_resource_name).new(resource).serializable_hash[:data]
       
